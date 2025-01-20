@@ -11,13 +11,80 @@ library(tidyr)
 library(dplyr)
 library(readr)
 library(readxl)
+library(tidyr)
 ```
 
 ```{r}
 #First data to be used to visualize heating
-data <- read_excel("C:/Users/earls/OneDrive/Documents/RProjects/MyProjects/OctWork/Rig tests/Data/Block B1 Cycle 6 Desorption.xlsx", sheet=1)
+data <- read_excel("C:/Users/earls/Downloads/Block B1 Cycle 6 Desorption.xlsx", sheet=1)
+# Actual path
+# "C:/Users/earls/OneDrive/Documents/RProjects/MyProjects/OctWork/Rig tests/Data/Block B1 Cycle 6 Desorption.xlsx"
 ```
 
 ```{r}
 View(data)
+```
+
+```{r}
+colnames(data)
+```
+
+```{r}
+class(data)
+```
+```{r}
+data1 <- data %>%
+  select(timeSeconds, pressure, blockTemp3, blockTemp4) %>%
+  slice(1001:1501) %>%
+  pivot_longer(cols = c(blockTemp3, blockTemp4), names_to = "temperature", values_to = "values")
+```
+
+```{r}
+ggplot(data1, aes(x = timeSeconds, y= values, color = temperature))+
+geom_point()
+```
+
+======================
+## Predicting the heating rate
+```{r}
+data1_mod <- lm (values ~ timeSeconds, data1)
+coef(data1_mod)
+
+broom::tidy(data1_mod)
+```
+
+## Prediction of heating rate
+Train/test split
+```{r}
+library(rsample)
+```
+
+```{r}
+data1_split <- initial_split(data1)
+data1_train <- training(data1_split)
+data1_test <- testing(data1_split)
+```
+
+### Model fitting
+```{r}
+model <- lm(values ~ timeSeconds, data= data1_train)
+```
+
+### Prediction
+```{r}
+prediction <- predict(model, data= data1_test)
+prediction <- prediction[1:nrow(data1_test)]  # Truncate if too long
+
+length(prediction)
+
+data1_test <- data1_test %>%
+  mutate(predvalues = prediction)
+
+#data1_test
+#coef(model)
+
+ggplot(data1_test)+
+geom_line(aes(timeSeconds, predvalues), size=3, color = "red", alpha=0.5)+
+geom_point(aes(timeSeconds, values), size=5, color = "green", alpha=0.75)+
+geom_point(data= data1, aes(timeSeconds, values), alpha=0.5)
 ```
