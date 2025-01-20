@@ -1,0 +1,45 @@
+---
+title: "Summarize verb"
+output: html_notebook
+---
+
+
+```{r}
+library(dplyr)
+```
+
+```{r}
+mtcars
+```
+
+```{r}
+mtcars %>%
+  summarize(mean = mean(disp), n = n())
+```
+
+group_by()
+
+```{r}
+mtcars %>%
+  group_by(cyl) %>%
+  summarize(mean= mean(disp), n = n())
+```
+
+```{r}
+mtcars %>%
+  group_by(carb) %>%
+  summarize(n=n())
+```
+
+```{r}
+starwars
+```
+
+```{r}
+starwars %>%
+  group_by(species) %>%
+  summarize(count = n(), mass = mean(mass, na.rm = TRUE)) %>%
+  filter(count>1, mass >50) %>%
+  arrange(desc(count))
+```
+

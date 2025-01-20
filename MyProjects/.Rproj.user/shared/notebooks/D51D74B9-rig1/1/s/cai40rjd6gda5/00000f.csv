@@ -1,0 +1,5 @@
+"0","po <- ggplot(long_data, aes(x=timeSeconds, y=value, color=variable))+"
+"0","  geom_line()+"
+"0","  facet_wrap(~variable, scales = ""free_y"", ncol=1)+"
+"0","  labs(x=""Time"", y=""Value"")+"
+"0","  theme_minimal()"

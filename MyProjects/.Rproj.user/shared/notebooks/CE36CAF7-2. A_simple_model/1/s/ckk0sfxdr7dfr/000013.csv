@@ -1,0 +1,8 @@
+"0","#use  runif() to generate a set of uniform random numbers"
+"0","# we want to generate random uniform lines"
+"0","models <- tibble("
+"0","  a1 = runif(250, -20, 40),"
+"0","  a2 = runif(250, -5, 5)"
+"0",")"
+"0",""
+"0","models"

@@ -1,0 +1,45 @@
+---
+title: "Getting started with Data Visaulization"
+output: html_notebook
+---
+
+```{r}
+library(ggplot2, dplyr)
+mpg
+
+```
+
+```{r}
+skimr:: skim(mpg)
+```
+
+```{r}
+mpg$displ
+```
+
+```{r}
+mpg$hwy
+```
+
+```{r}
+mpg %>% 
+  select(displ, hwy)
+```
+
+```{r}
+ggplot(data = mpg, mapping = aes(x= displ, y = hwy))
+```
+
+```{r}
+ggplot(data = mpg, mapping = aes(x= displ, y = hwy))+
+  geom_point()
+```
+
+```{r}
+ggplot(data = mpg, mapping = aes(x= displ, y = hwy))+
+  geom_point()
+
+```
+
+
+

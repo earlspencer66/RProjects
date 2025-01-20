@@ -1,0 +1,3 @@
+"0","long_data <- data1 %>% "
+"0","  pivot_longer(cols= c(pressure, CO2Perc, O2Perc), names_to = ""variable"", values_to = ""value"") %>%"
+"0","  slice(1789:16578)"

@@ -1,0 +1,2 @@
+"0","data1 <- data %>%"
+"0","  select(timeMillis, timeSeconds, pressure, blockTemp1, blockTemp2, blockTemp3, blockTemp4, CO2Perc, O2Perc)"

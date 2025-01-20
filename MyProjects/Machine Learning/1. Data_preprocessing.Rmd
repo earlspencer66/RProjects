@@ -1,0 +1,163 @@
+---
+title: "Data Preprocessing"
+output: html_notebook
+---
+
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(skimr)
+```
+
+```{r}
+#view(starwars)
+skim(starwars)
+```
+
+```{r}
+data <- starwars %>%
+  select(height, mass, gender)
+data
+```
+
+```{r}
+#split data using package called rsample
+library(rsample)
+
+data_split <- initial_split(data)
+data_train <- training(data_split)
+data_test <- testing(data_split)
+
+
+```
+
+
+```{r}
+#Feature Engineering --- creating new features of variables
+# e.g create a BMI feature in the starwars dataset
+data_train <- data_train %>% 
+  mutate(BMI = mass/ (height*height))
+
+data_train
+```
+
+```{r}
+#search for missing values
+skim(data_train)
+any(is.na(data_train))
+```
+
+```{r}
+colSums(is.na(data_train))
+```
+
+```{r}
+#height and gender have fewer missing values
+# drop those
+# fix the mass and BMI instances by filling in with the avg of the columns
+data_tr_imputed <- data_train%>% drop_na(height, gender) %>%
+  mutate(mass = ifelse(is.na(mass), mean(mass, na.rm = TRUE), mass)) %>%
+  mutate(BMI = ifelse(is.na(BMI), mean(BMI, na.rm = TRUE), BMI)) #%>%
+  #view()
+
+skim(data_train)
+```
+
+```{r}
+#Encoding Categorical data
+#iris
+#unique(iris$Species)
+#One way to do it
+iris %>%
+  mutate(Species= as.integer(Species))
+```
+
+```{r}
+#Another way to do it
+iris %>%
+  mutate(Species_versicolor = ifelse(Species=="versicolor", 1, 0),
+         Species_setosa = ifelse(Species== "setosa", 1, 0),
+         Species_virginica = ifelse(Species == "virginica", 1, 0))
+```
+
+```{r}
+data_tr_imputed
+```
+
+
+```{r}
+#back to data_train
+data_tr_imputed_encoded <- data_train %>%
+  mutate(gender_masculine = ifelse(gender== "masculine", 1, 0)) %>%
+  select(-gender) 
+  #select(-ifelse(is.na(mass), mean(mass, na.rm = TRUE), mass)
+```
+
+```{r}
+data_tr_imputed_encoded
+```
+
+```{r}
+normalize <- function(feature){
+  (feature-mean(feature))/sd(feature)
+}
+```
+
+
+Feature Scaling
+```{r}
+#BMI values too small
+# use funtion normalize
+
+data_tr_imputed_encoded_normalized <- data_tr_imputed_encoded %>%
+  mutate_all(normalize)
+
+```
+
+
+# Complete Preprocessing Pipeline
+
+```{r}
+data_tr_pipeline <- data_train %>%
+  drop_na(height, gender) %>%
+  mutate(mass = ifelse(is.na(mass), mean(mass, na.rm = TRUE), mass)) %>%
+  mutate(BMI = ifelse(is.na(BMI), mean(BMI, na.rm = TRUE), BMI)) %>%
+  mutate(gender_masculine = ifelse(gender== "masculine", 1, 0)) %>%
+  select(-gender) %>%
+  mutate_all(normalize)
+  
+data_tr_pipeline
+```
+
+```{r}
+waldo::compare(data_tr_imputed_encoded_normalized, data_tr_pipeline)
+```
+
+## How to do all of the above using package "recipes"
+
+```{r}
+library(recipes)
+
+data_recipe <- data_train %>%
+  recipe() %>%
+  step_mutate(BMI = mass/(height*height)) %>%
+  step_naomit(gender, height) %>%
+  step_impute_mean(mass, BMI) %>%
+  step_dummy(gender) %>%
+  step_normalize(everything()) %>%
+prep()
+  
+```
+
+## juice the recipe
+```{r}
+juice(data_recipe)
+```
+
+## Compare the data
+
+```{r}
+waldo::compare(data_tr_imputed_encoded_normalized, data_recipe)
+```
+

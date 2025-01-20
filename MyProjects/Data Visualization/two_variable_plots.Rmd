@@ -1,0 +1,21 @@
+---
+title: "Two Variable Plots"
+output: html_notebook
+---
+
+```{r}
+library(ggplot2)
+mpg
+```
+
+```{r}
+ggplot(mpg,aes(displ, hwy))+
+  geom_smooth()
+```
+
+```{r}
+ggplot(mpg, aes(displ, hwy))+
+  geom_smooth(color="maroon", linetype=2, size=1, se=FALSE)
+```
+
+R Graph library

@@ -1,0 +1,11 @@
+"1","
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6OSwibmNvbCI6Mywic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyI5IMOXIDMiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFCcTFTeTA3RE1CRGN4RW1xUkNvZzhSMkpWT0RBTlFXQnhJbEhrWHAxRTlOR3BIWmxPNEE0OGRmY1dqYXBUVnZ6dW1ESjhlenN6bzY5eXUzNStEZ1pKd0JBSUFoOElDRkNDTzlIRitrcEFCSUFIZ1FRdCtjTEZoMTJsUUFIdUdPVENLK1padkxQZ0F6RjVGY1lYSWtaL3hFN25qZE45VHJZRG81c01HSktELzY1Yk5mY3k5dGdoZXZ6TklrekM0WmZRUDROMkIxd3lPbWNLZU5GRE5tNzAwM0p1RFpoa2l2RmxKcHZtUEJTMHBJNXJXSXBualBicm8vYmY4TVBYdlRkOVN4cXFxeW5KWk9TYXBvOVNOUmp0SFFrUGJIUWxlQW84dHUvSVhMRW5uU0kvWWEzTnluVFl0Ynd4L1RFU1pNRm43YWVIYlZlZllQakxVeld0L0JYUmg0WmVjVDR0T0xNUHFlbUUxYmJ6aVY3TW5BUDU5R05JMXZJYWpOTVpGV21oYVpXa2hTaXRrejNjbGgrQUFQaGJ5QWlBd0FBIn0= -->
+
+<div data-pagedtable=\"false\">
+  <script data-pagedtable-source type=\"application/json\">
+{\"columns\":[{\"label\":[\"Student\"],\"name\":[1],\"type\":[\"chr\"],\"align\":[\"left\"]},{\"label\":[\"Assessment\"],\"name\":[2],\"type\":[\"chr\"],\"align\":[\"left\"]},{\"label\":[\"Grade\"],\"name\":[3],\"type\":[\"chr\"],\"align\":[\"left\"]}],\"data\":[{\"1\":\"Peter\",\"2\":\"Quiz1\",\"3\":\"A\"},{\"1\":\"Peter\",\"2\":\"Quiz2\",\"3\":\"NA\"},{\"1\":\"Peter\",\"2\":\"Test1\",\"3\":\"NA\"},{\"1\":\"Bob\",\"2\":\"Quiz1\",\"3\":\"C\"},{\"1\":\"Bob\",\"2\":\"Quiz2\",\"3\":\"B\"},{\"1\":\"Bob\",\"2\":\"Test1\",\"3\":\"B\"},{\"1\":\"John\",\"2\":\"Quiz1\",\"3\":\"A\"},{\"1\":\"John\",\"2\":\"Quiz2\",\"3\":\"A\"},{\"1\":\"John\",\"2\":\"Test1\",\"3\":\"A\"}],\"options\":{\"columns\":{\"min\":{},\"max\":[10],\"total\":[3]},\"rows\":{\"min\":[10],\"max\":[10],\"total\":[9]},\"pages\":{}}}
+  </script>
+</div>
+
+<!-- rnb-frame-end -->
+"

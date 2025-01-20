@@ -1,0 +1,6 @@
+"0","#split data using package called rsample"
+"0","library(rsample)"
+"0",""
+"0","data_split <- initial_split(data)"
+"0","data_train <- training(data_split)"
+"0","data_test <- testing(data_split)"

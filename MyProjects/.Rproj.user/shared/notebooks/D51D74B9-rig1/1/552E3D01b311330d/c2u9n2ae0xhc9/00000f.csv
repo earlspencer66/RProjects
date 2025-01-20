@@ -1,0 +1,6 @@
+"0","ggplot(long_data, aes(x = timeSeconds, y = value, color = variable)) +"
+"0","  geom_line(linewidth = 1) +"
+"0","  labs(x = ""Time"", y = ""Value"", color = ""Variable"") +"
+"0","  theme_minimal() +"
+"0","  theme(legend.position = ""top"")"
+"0",""

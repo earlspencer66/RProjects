@@ -1,0 +1,27 @@
+---
+title: "{dplyr} the filter verb"
+output: html_notebook
+---
+
+filter
+select
+mutate
+arrange
+summarize
+```{r}
+# filter - selecting rows
+# select -- selecting columns/the variables
+```
+
+
+```{r}
+library(dplyr)
+```
+
+```{r}
+starwars
+```
+```{r}
+starwars %>%
+  filter(eye_color != "black" , skin_color == "fair", height > 150)
+```

@@ -1,0 +1,72 @@
+---
+title: "Data Pivoting"
+output: html_notebook
+---
+
+{tidyr}
+pivot_longer
+pivot_wider
+
+```{r}
+library(tidyr)
+
+messy_data <- tibble::tribble(
+  ~Student, ~Quiz1, ~Quiz2, ~Test1,
+  #-------/------/-------/------
+  "Peter", "A", NA, NA,
+  "Bob", "C", "B", "B",
+  "John", "A", "A", "A"
+)
+messy_data
+```
+
+```{r}
+tidy_data <- pivot_longer(messy_data, -Student, names_to = "Assessment", values_to = "Grade")
+tidy_data
+#pivot_longer(messy_data, c(Quiz1, Quiz2, Test1), names_to="Assessment Type", values_to = #"Grade")
+
+```
+
+```{r}
+messy_data2 <- pivot_wider(tidy_data, names_from = Assessment, values_from = Grade)
+messy_data2
+```
+
+```{r}
+waldo::compare(messy_data, messy_data2)
+```
+
+Example using actual data
+relig_income
+
+```{r}
+relig_income
+```
+
+```{r}
+tidy_data_rel <- relig_income %>%
+  pivot_longer(-religion, names_to = "income", values_to = "count")
+tidy_data_rel
+```
+
+```{r}
+billboard
+```
+
+```{r}
+billboard_longer <- billboard %>%
+  pivot_longer(
+    cols = starts_with("wk"), # select specific columns
+    names_to = "Week",
+    values_to = "Rank",
+    values_drop_na = TRUE
+  )
+```
+
+Demonstrate group_by()
+```{r}
+billboard_longer%>%
+  group_by(track)%>%
+  summarize(highest_rank = min(Rank), week= Week)%>%
+  arrange(highest_rank)
+```

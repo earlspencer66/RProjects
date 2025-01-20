@@ -1,0 +1,14 @@
+---
+title: "Iris WebAPP"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+skimr::skim(iris)
+```
+

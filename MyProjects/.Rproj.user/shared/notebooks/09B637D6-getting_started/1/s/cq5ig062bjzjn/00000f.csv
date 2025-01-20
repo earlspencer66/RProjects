@@ -1,0 +1,24 @@
+"0","skimr:: skim(mpg)
+"
+"1","── Data Summary ────────────────────────
+"
+"1","                           Values
+"
+"1","Name                       mpg   
+"
+"1","Number of rows             234   
+"
+"1","Number of columns          11    
+"
+"1","_______________________          
+"
+"1","Column type frequency:           
+"
+"1","  character                6     
+"
+"1","  numeric                  5     
+"
+"1","________________________         
+"
+"1","Group variables            None  
+"

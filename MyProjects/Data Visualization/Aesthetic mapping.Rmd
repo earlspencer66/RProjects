@@ -1,0 +1,57 @@
+---
+title: "Aesthetic Mapping"
+output: html_notebook
+---
+
+```{r}
+library(ggplot2)
+```
+
+```{r}
+ggplot(mpg, aes(x= displ, y= hwy))+
+  geom_point()
+```
+
+```{r}
+mpg
+```
+
+Aestheitcs
+
+Color
+
+```{r}
+ggplot(mpg, aes(x= displ, y= hwy, color= manufacturer))+
+  geom_point()
+```
+sizing
+
+```{r}
+ggplot(mpg, aes(x= displ, y= hwy, size = manufacturer))+
+  geom_point()
+```
+alpha - tranparency of the points
+
+```{r}
+ggplot(mpg, aes(x= displ, y= hwy, alpha = cty))+
+  geom_point()
+```
+shape
+```{r}
+ggplot(mpg, aes(x= displ, y= hwy, shape = class))+
+  geom_point()
+```
+
+All points to one color
+
+```{r}
+ggplot(mpg)+
+  geom_point(mapping= aes(x= displ, y= hwy), color = "blue")
+```
+All in one
+
+```{r}
+ggplot(mpg)+
+  geom_point(mapping = aes(x= displ, y= hwy), color= "red", size = 3, alpha= 0.2, shape = 1)
+```
+

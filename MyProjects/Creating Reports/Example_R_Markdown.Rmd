@@ -1,0 +1,32 @@
+---
+title: "Creating Reports with R Markdown"
+author: "Earl Spencer"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r include=FALSE}
+library(dplyr)
+library(ggplot2)
+```
+
+```{r include=FALSE}
+data <- iris
+data[1]
+```
+
+```{r include=FALSE}
+data %>% select(Species, starts_with("Petal"))
+```
+
+This data contains `r nrow(data)` rows of data.
+
+The scatter plot of Petal width against petal length is as follows:
+
+```{r echo=FALSE}
+p<- ggplot(data, aes(Petal.Width, Petal.Length))+
+  geom_point(color = "maroon")
+p
+```
+

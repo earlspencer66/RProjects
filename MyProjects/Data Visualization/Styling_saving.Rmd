@@ -1,0 +1,13 @@
+---
+title: "Styling and Saving"
+output: html_notebook
+---
+
+```{r}
+library(ggplot2)
+mpg
+```
+
+ggsave("plot.png", p)
+ggsave("plot.pdf", p)
+ggsave("plot.jpg", p)

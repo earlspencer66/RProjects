@@ -1,0 +1,145 @@
+---
+title: "Mona Vacuum Test"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r}
+library(tidyr)
+library(dplyr)
+library(readxl)
+library(ggplot2)
+library(plotly)
+```
+
+```{r}
+data <- read_excel("C:/Users/earls/Downloads/B4 Cycle 1 Des no NCGs removal.xlsx", sheet=1)
+
+```
+
+```{r}
+View(data)
+```
+
+```{r}
+colnames(data)
+```
+
+```{r}
+data1 <- data %>%
+  mutate(
+    FlowRate = as.numeric(FlowRate),
+    TotFe = ((CO2Perc)/100)*FlowRate) %>%
+  select(timeSeconds, pressure, starts_with("block"), ends_with("Perc"), FlowRate, TotFe) #%>% 
+  #slice(3311:5414)
+```
+
+```{r}
+View(data1)
+```
+
+```{r}
+colnames(data1)
+```
+### Make long data
+
+```{r}
+data2 <- data1 %>%
+  pivot_longer(cols = c(CO2Perc, O2Perc), names_to = "variable", values_to = "value" )
+```
+
+```{r}
+View(data2)
+```
+
+## Concentrations against time
+```{r}
+p <- ggplot(data2, aes(x=timeSeconds, y=value, color=variable))+
+     geom_smooth(linewidth=1)+
+     labs(x="Time", y = "Concentration(%)")+
+     theme_minimal()
+     theme(legend.position = "top")
+```
+
+```{r}
+ggplotly(p)
+```
+
+### Facets
+```{r}
+data3 <- data1 %>% 
+  pivot_longer(cols = c(pressure, CO2Perc, O2Perc), names_to = "variable", values_to = "value")
+```
+
+
+```{r}
+p1 <-ggplot(data3, aes(x=timeSeconds, y=value, color=variable))+
+geom_line(linewidth=1)+
+facet_wrap(~variable, scales = "free_y", ncol = 1)+
+labs(x= "time (seconds)", y = "value")+
+ggtitle("Non-purging Process")+
+theme(
+    plot.title = element_text(size = 16, face = "bold", hjust = 0.5)
+  )
+```
+
+```{r}
+p11 <-ggplotly(p1)
+```
+
+```{r}
+p11
+```
+
+
+```{r}
+class(p11)
+```
+
+```{r}
+ggsave("Non_purging_process.jpeg", p1)
+```
+
+
+```{r}
+library(htmlwidgets)
+
+#saveWidget()
+saveWidget(p11, "non_purging_step_interactive.html", selfcontained = TRUE)
+```
+
+```{r}
+data4 <- data1 %>% 
+  pivot_longer(
+    cols = c(blockTemp3, pressure, ends_with("Perc")),
+    names_to = "variable",
+    values_to = "value"
+  )
+```
+
+```{r}
+p2 <- ggplot(data4, aes(x=timeSeconds, y=value, color = variable))+
+  geom_line(linewidth=1)+
+  facet_wrap(~variable, scales = "free_y", ncol = 1)+
+  labs(x= "time (seconds)", y = "value")+
+  theme_minimal()
+```
+
+```{r}
+p22 <-ggplotly(p2)
+```
+
+```{r}
+class(p2)
+```
+
+```{r}
+library(htmlwidgets)
+
+saveWidget(p22, "non_purging_step_interactive.html", selfcontained = TRUE)
+```
+
+```{r}
+ggsave("non_purging_process1.jpeg", p2)
+```

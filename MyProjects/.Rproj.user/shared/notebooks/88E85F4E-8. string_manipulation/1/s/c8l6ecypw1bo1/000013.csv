@@ -1,0 +1,8 @@
+"0","str_detect(id_name, ""[:alpha:]"")
+"
+"1","[1]"
+"1"," TRUE"
+"1"," TRUE"
+"1"," TRUE"
+"1","
+"

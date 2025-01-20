@@ -1,0 +1,2 @@
+"0","data2 <- data1 %>%"
+"0","  pivot_longer(cols = c(CO2Perc, O2Perc), names_to = ""variable"", values_to = ""value"" )"

@@ -1,0 +1,30 @@
+---
+title: "Select verb"
+output: html_notebook
+---
+filter() - selecting rows
+select() - selecting columns
+mutate() - create columns
+arrange() - ordering rows
+summarize()
+ 
+
+```{r}
+starwars
+```
+```{r}
+# deal with data upto the column with "birth_year"
+starwars2 <- starwars %>%
+  select(name, birth_year, height, mass)
+```
+
+everything() --- helper function that shows all the REMAINING columns
+```{r}
+starwars3 <- starwars %>%
+  select(height: birth_year, everything(starwars2))
+starwars3
+```
+starts_with(), ends_with(), contains()
+
+where()
+

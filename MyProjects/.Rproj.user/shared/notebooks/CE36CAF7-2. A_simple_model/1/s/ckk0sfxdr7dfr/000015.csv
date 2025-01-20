@@ -1,0 +1,4 @@
+"0",""
+"0","ggplot(data= sim1, aes(x,y))+"
+"0","geom_point(color=""maroon"")+"
+"0","geom_abline(aes(intercept= a1, slope=-a2), data = models, alpha=0.25)"

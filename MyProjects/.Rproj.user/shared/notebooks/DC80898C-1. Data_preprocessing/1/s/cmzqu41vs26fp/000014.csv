@@ -1,0 +1,27 @@
+"0","#view(starwars)
+skim(starwars)
+"
+"1","── Data Summary ────────────────────────
+"
+"1","                           Values  
+"
+"1","Name                       starwars
+"
+"1","Number of rows             87      
+"
+"1","Number of columns          14      
+"
+"1","_______________________            
+"
+"1","Column type frequency:             
+"
+"1","  character                8       
+"
+"1","  list                     3       
+"
+"1","  numeric                  3       
+"
+"1","________________________           
+"
+"1","Group variables            None    
+"

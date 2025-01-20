@@ -1,0 +1,11 @@
+"1","
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6NCwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyIzIMOXIDQiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFCcFZRVFUvRE1BeDFtN1JUS3cyUStCMnROSGJoeWtBY09QRXhwRjJ6Tm13VkphblNGQkFuL2pnYmJodkR5STFJYVorZjM3TWQzMSt0NXVrcUJRQUduSWZBSW9RUVBTNnZzM01BSkFBQzRKRDAvM2NVblNMZ2VFOUd4NUNJYnFXVnhnVnNvZGNPOGh1OVZaNDJ1Q0J3K2N1UUJDRFo0NkhFNGwrS1A3TkdTcnpJMXRtNEl5Y1B0aXVsc3FTNTY2cVAyV0Z3UnNGU3RuYm1sVXlNZnN1cDdCUnYrSWtmSE9iTDcxM1VvcVhlUkthbHNDSi9NdWpIYU9kWkpycXhsVlpvQ3ZzRng1NDVNQjV4M0tsK2tqSXJ0cDE2enVaZW1qVnEwL2NjcVBGTUhXWUhtSTlUaEh0bmo1MDlsbXBUS1VuUHFjVmExbFM1bEs4T0h1RStoblhramFsK2xwb2kyK1pXVzBHV3ROQTFNY1BMWWZjTnE5MHkrWFVDQUFBPSJ9 -->
+
+<div data-pagedtable=\"false\">
+  <script data-pagedtable-source type=\"application/json\">
+{\"columns\":[{\"label\":[\"Student\"],\"name\":[1],\"type\":[\"chr\"],\"align\":[\"left\"]},{\"label\":[\"Quiz1\"],\"name\":[2],\"type\":[\"chr\"],\"align\":[\"left\"]},{\"label\":[\"Quiz2\"],\"name\":[3],\"type\":[\"chr\"],\"align\":[\"left\"]},{\"label\":[\"Test1\"],\"name\":[4],\"type\":[\"chr\"],\"align\":[\"left\"]}],\"data\":[{\"1\":\"Peter\",\"2\":\"A\",\"3\":\"NA\",\"4\":\"NA\"},{\"1\":\"Bob\",\"2\":\"C\",\"3\":\"B\",\"4\":\"B\"},{\"1\":\"John\",\"2\":\"A\",\"3\":\"A\",\"4\":\"A\"}],\"options\":{\"columns\":{\"min\":{},\"max\":[10],\"total\":[4]},\"rows\":{\"min\":[10],\"max\":[10],\"total\":[3]},\"pages\":{}}}
+  </script>
+</div>
+
+<!-- rnb-frame-end -->
+"

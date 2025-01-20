@@ -1,0 +1,69 @@
+---
+title: "Single Variable Plot"
+output: html_notebook
+---
+
+```{r}
+library(ggplot2)
+mpg
+```
+
+```{r}
+dplyr::glimpse(mpg)
+```
+
+```{r}
+ggplot(mpg)+
+  geom_histogram(mapping=aes(x=displ), bins = 10)
+```
+
+
+
+
+
+
+```{r}
+ggplot(mpg)+
+  geom_freqpoly(mapping = aes(x=displ))
+```
+
+```{r}
+ggplot(mpg)+
+  geom_density(mapping = aes(x=displ))
+```
+
+
+
+
+
+```{r}
+ggplot(mpg)+
+  geom_bar(mapping=aes(x=cyl))
+```
+
+
+
+```{r}
+ggplot(mpg)+
+  geom_bar(mapping= aes(x = forcats::fct_infreq(class), fill=class))
+```
+
+```{r}
+ggplot(mpg)+
+  geom_bar(mapping= aes(x = forcats::fct_infreq(class)), fill="maroon")
+```
+
+
+```{r}
+ggplot(mpg)+
+  geom_bar(mapping= aes(x = forcats::fct_infreq(class), fill=drv))
+# default position = "stacked"
+```
+
+
+Dodge the bars
+```{r}
+ggplot(mpg)+
+  geom_bar(mapping = aes(x=forcats::fct_infreq(class), fill=drv), position= "dodge")
+```
+

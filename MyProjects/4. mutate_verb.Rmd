@@ -1,0 +1,27 @@
+---
+title: "Mutate Verb"
+output: html_notebook
+---
+
+```{r}
+library(dplyr)
+starwars
+```
+
+Assume BMI <- mass/ ((heigh/100)^2)
+```{r}
+#mutate creates new data from existing columns
+#changes data in existing columns
+starwars %>%
+  mutate(bmi = mass/((height/100)^2), round(bmi, 2))
+
+```
+convert to factors
+```{r}
+starwars %>%
+  select(name, species, homeworld) %>%
+  mutate(homeworld = as.factor(homeworld),
+         species = as.factor(species))
+
+```
+

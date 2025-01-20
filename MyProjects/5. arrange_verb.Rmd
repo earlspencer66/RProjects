@@ -1,0 +1,34 @@
+---
+title: "Arrange Verb"
+output: html_notebook
+---
+
+```{r}
+library(dplyr)
+```
+
+```{r}
+starwars
+```
+
+```{r}
+# arrange the rows in ascending values of height
+starwars %>%
+  arrange(height)
+```
+
+desc
+```{r}
+starwars %>%
+  arrange(desc(height))
+```
+
+```{r}
+mtcars
+```
+
+```{r}
+mtcars %>%
+  arrange(mpg, cyl, disp, hp, drat)
+```
+

@@ -1,0 +1,11 @@
+"1","
+<!-- rnb-frame-begin eyJtZXRhZGF0YSI6eyJjbGFzc2VzIjpbInRibF9kZiIsInRibCIsImRhdGEuZnJhbWUiXSwibnJvdyI6MywibmNvbCI6NCwic3VtbWFyeSI6eyJBIHRpYmJsZSI6WyIzIMOXIDQiXX19LCJyZGYiOiJINHNJQUFBQUFBQUFCcFZSVFUvRE1BeDEyN1JUS3cyUStCMnJ0SEhoeWtBY09QRXhwRjJ6TnRzcVNsS2xLU0JPL0hFMm5EYUdMVGNpSlhsKzlyTWQ1L0ZtZVpFdE13Q0lnTEVRb2hnaHhNK0wyOGtsQUJJQUFUQkk3ZjJCUWVjSUdPNnpRZEU3NG50aGhIWkdORmNyQjltZDJrb3ZOcmdpY1AzSFVBaEF1c2RGanZtL0lvNTZqU1YvRmEyVE1VZU9ua3hYQ21rbzVxR3JQcWVIeG95TWhXak4xRXVaYXZXZVU5b3g3dkFMRDJ6bTI2OWQxTHlsMmtSbUpUYzhYMnZVbzdYekpDUFZtRXBKRklWMndJa25EclJIbkhiU2RsSk9pbTBuWCt4UEhibWpSbTVzelo0YTF0amg2QUN6b1l0dzcrU0preWRDYmlvcDZEazFYNG1hTXBmaXpjRVRuRWMvanJ6UjFlOVFNMlRiM0NqRFNaSVZxaWFtZnpuc2ZnQm5oVkNxZFFJQUFBPT0ifQ== -->
+
+<div data-pagedtable=\"false\">
+  <script data-pagedtable-source type=\"application/json\">
+{\"columns\":[{\"label\":[\"Student\"],\"name\":[1],\"type\":[\"chr\"],\"align\":[\"left\"]},{\"label\":[\"Quiz1\"],\"name\":[2],\"type\":[\"chr\"],\"align\":[\"left\"]},{\"label\":[\"Quiz2\"],\"name\":[3],\"type\":[\"chr\"],\"align\":[\"left\"]},{\"label\":[\"Test1\"],\"name\":[4],\"type\":[\"chr\"],\"align\":[\"left\"]}],\"data\":[{\"1\":\"Peter\",\"2\":\"A\",\"3\":\"NA\",\"4\":\"NA\"},{\"1\":\"Bob\",\"2\":\"C\",\"3\":\"B\",\"4\":\"B\"},{\"1\":\"John\",\"2\":\"A\",\"3\":\"A\",\"4\":\"A\"}],\"options\":{\"columns\":{\"min\":{},\"max\":[10],\"total\":[4]},\"rows\":{\"min\":[10],\"max\":[10],\"total\":[3]},\"pages\":{}}}
+  </script>
+</div>
+
+<!-- rnb-frame-end -->
+"

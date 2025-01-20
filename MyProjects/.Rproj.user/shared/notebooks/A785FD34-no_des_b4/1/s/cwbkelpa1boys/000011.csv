@@ -1,0 +1,8 @@
+"0","p1 <-ggplot(data3, aes(x=timeSeconds, y=value, color=variable))+"
+"0","geom_line(linewidth=1)+"
+"0","facet_wrap(~variable, scales = ""free_y"", ncol = 1)+"
+"0","labs(x= ""time (seconds)"", y = ""value"")+"
+"0","ggtitle(""CO2 and O2 Concetration Against Pressure for a Non-purging Process"")+"
+"0","theme("
+"0","    plot.title = element_text(size = 16, face = ""bold"", hjust = 0.5)"
+"0","  )"

@@ -1,0 +1,24 @@
+---
+title: "Web scraping"
+output: html_notebook
+---
+
+{rvest}
+https:www.imdb.com/chart/top/
+
+```{r}
+library(rvest)
+```
+
+
+```{r}
+url <- "https://www.imdb.com/chart/top/"
+top_movies <- read_html(url)
+```
+
+```{r}
+top_movies %>%
+  html_nodes(".imdbRating")
+```
+Need to re-do this
+

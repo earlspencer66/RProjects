@@ -1,0 +1,9 @@
+"0","billboard_longer%>%
+  group_by(track)%>%
+  summarize(highest_rank = min(Rank), week= Week)%>%
+  arrange(highest_rank)
+"
+"2","Warning: Returning more (or less) than 1 row per `summarise()` group was deprecated in dplyr 1.1.0.
+Please use `reframe()` instead.
+When switching from `summarise()` to `reframe()`, remember that `reframe()` always returns an ungrouped data frame and adjust accordingly."
+"2","`summarise()` has grouped output by 'track'. You can override using the `.groups` argument."

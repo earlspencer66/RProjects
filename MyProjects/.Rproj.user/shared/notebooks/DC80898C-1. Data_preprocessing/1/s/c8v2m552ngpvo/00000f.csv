@@ -1,0 +1,3 @@
+"0","data <- starwars %>%"
+"0","  select(height, mass, gender)"
+"0","data"

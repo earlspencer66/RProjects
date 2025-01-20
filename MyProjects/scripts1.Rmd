@@ -1,0 +1,208 @@
+---
+title: "Vectors Part 2"
+output: html_notebook
+---
+
+
+```{r}
+(x <- 1:10)
+```
+```{r}
+seq(0, 10000, by=1000)
+```
+
+```{r}
+y <- (11:20)
+y
+```
+
+```{r}
+x * y
+```
+------
+Missing Values
+------
+```{r}
+x <- c(0.5, NA, 3, 4)
+```
+
+Test if a vector has a missing value. Use "is.na"
+
+Lists
+```{r}
+list(1, 3L, "a", TRUE)
+```
+
+```{r}
+xlist <- list(data(iris))
+xlist$data
+```
+df
+```{r}
+iris
+```
+
+```{r}
+data <- iris3
+data
+```
+
+Access all R datasets using data()
+
+Creating dataframes
+
+```{r}
+mtcars
+```
+
+Create dataframe
+```{r}
+data<-data.frame(Name=c("John", "Bob"),
+           Age=c(35,40), 
+           Hair = c("brown", "black"),
+           Married=c(TRUE, FALSE))
+```
+
+Helper functions
+```{r}
+df <- data.frame(id = letters[1:10], x=1:10, y=11:20)
+```
+
+
+```{r}
+df
+```
+
+```{r}
+head(df)
+```
+
+```{r}
+str(mtcars)
+```
+```{r}
+rownames(mtcars)
+```
+
+
+```{r}
+colnames(mtcars)
+```
+
+Tibbles
+
+```{r}
+library(tibble)
+```
+
+```{r}
+tb <- as_tibble(iris)
+```
+
+Intermediate R: relational operators
+```{r}
+
+```
+
+Factors
+
+Dates and Times
+{lubridate}
+
+
+
+```{r}
+library(lubridate)
+```
+
+```{r}
+today()
+now()
+```
+
+```{r}
+date1 <- mdy("March 25th, 1998")
+date1
+```
+
+Creating date objects from numbers
+
+```{r}
+date2 <- dmy(25031998)
+date2
+```
+Creating date time
+```{r}
+date_time <- ymd_hms("2024-12-25 20:38:41 EAT")
+```
+
+Functional Programming
+lapply()
+```{r}
+rep(10,20)
+```
+```{r}
+values <- lapply(rep(10,20), runif)
+```
+
+
+```{r}
+values
+```
+```{r}
+means <- lapply(values, mean)
+means
+```
+unlist()-- flatten out into a vector
+
+```{r}
+unlist(means)
+```
+
+```{r}
+car_names <- rownames(mtcars)
+car_names
+```
+Measure the length of each of the names
+
+```{r}
+unlist(lapply(car_names, nchar))
+```
+Data Import and Export
+
+{readr}
+read_csv()
+write_csv()
+
+```{r}
+library(readr)
+```
+
+```{r}
+data <- read_csv("C:/Users/earls/Octavia Carbon/Octavia Carbon - General/3. Workspaces/1. Common/8. R&D/Mechanical/0. Kesses/Experimental Data/Yields/Scripts/Vacuum Drying 06092024/data/6thSeptember2024.csv")
+data
+```
+```{r}
+write.csv(mtcars, "mtcars.csv")
+```
+
+web scraping
+
+```{r}
+library(httr)
+```
+
+```{r}
+online_data <- GET("https://docs.google.com/spreadsheets/d/1QnJZ_2KHFev7EnzAV-G7X09c1jAK9IWd-GzqhIMd3fA/edit?gid=1403256836#gid=1403256836")
+```
+```{r}
+content(online_data)
+```
+Working with Databases
+
+```{r}
+
+```
+
+Data Manipulation in R
+

@@ -1,0 +1,31 @@
+"0","#height and gender have fewer missing values"
+"0","# drop those"
+"0","# fix the mass and BMI instances by filling in with the avg of the columns"
+"0","data_tr_imputed <- data_train%>% drop_na(height, gender) %>%"
+"0","  mutate(mass = ifelse(is.na(mass), mean(mass, na.rm = TRUE), mass)) %>%"
+"0","  mutate(BMI = ifelse(is.na(BMI), mean(BMI, na.rm = TRUE), BMI)) #%>%"
+"0","  #view()"
+"0",""
+"0","skim(data_train)"
+"1","── Data Summary ────────────────────────
+"
+"1","                           Values    
+"
+"1","Name                       data_train
+"
+"1","Number of rows             59        
+"
+"1","Number of columns          5         
+"
+"1","_______________________              
+"
+"1","Column type frequency:               
+"
+"1","  character                1         
+"
+"1","  numeric                  4         
+"
+"1","________________________             
+"
+"1","Group variables            None      
+"

@@ -1,0 +1,37 @@
+---
+title: "facets, layering and Coordinate systems"
+output: html_notebook
+---
+
+```{r}
+library(ggplot2)
+mpg
+```
+
+```{r}
+p <- ggplot(mpg, aes(displ, hwy))+
+  geom_point()+
+  geom_smooth()
+```
+
+```{r}
+p + geom_density2d(size=1, color="maroon")
+```
+
+Facets
+facet_wrap(~class)
+
+```{r}
+ggplot(mpg)+
+  geom_point(aes(displ, hwy))+
+  facet_wrap(~class)
+```
+
+Coordinate systems
+
+```{r}
+ggplot(mpg, aes(class, hwy))+
+  geom_boxplot(aes(color=class))+
+  coord_flip()
+```
+
