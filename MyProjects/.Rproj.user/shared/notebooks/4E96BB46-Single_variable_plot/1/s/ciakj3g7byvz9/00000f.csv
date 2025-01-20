@@ -1,2 +1,0 @@
-"0","ggplot(mpg)+"
-"0","  geom_bar(mapping= aes(x = forcats::fct_infreq(class), fill=drv))"

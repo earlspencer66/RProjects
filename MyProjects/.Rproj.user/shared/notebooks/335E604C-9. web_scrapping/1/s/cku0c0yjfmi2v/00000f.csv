@@ -1,2 +1,0 @@
-"0","url <- ""https://www.imdb.com/chart/top/"""
-"0","top_movies <- read_html(url)"

@@ -1,5 +1,0 @@
-"0","data1 <- data %>%"
-"0","  mutate("
-"0","    FlowRate = as.numeric(FlowRate),"
-"0","    TotFe = ((CO2Perc)/100)*FlowRate) %>%"
-"0","  select(timeSeconds, pressure, starts_with(""block""), ends_with(""Perc""), FlowRate, TotFe)"

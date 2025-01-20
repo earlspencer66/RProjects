@@ -1,4 +1,0 @@
-"0","data<-data.frame(Name=c(""John"", ""Bob""),"
-"0","           Age=c(35,40), "
-"0","           Hair = c(""brown"", ""black""),"
-"0","           Married=c(TRUE, FALSE))"

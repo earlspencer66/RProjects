@@ -1,4 +1,0 @@
-"0","xlist <- list(data(iris))"
-"0","xlist$data"
-"1","NULL
-"

@@ -1,6 +1,0 @@
-"0","#Encoding Categorical data"
-"0","#iris"
-"0","#unique(iris$Species)"
-"0","#One way to do it"
-"0","iris %>%"
-"0","  mutate(Species= as.integer(Species))"

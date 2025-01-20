@@ -1,6 +1,0 @@
-"0","#Feature Engineering --- creating new features of variables"
-"0","# e.g create a BMI feature in the starwars dataset"
-"0","data_train <- data_train %>% "
-"0","  mutate(BMI = mass/ (height*height))"
-"0",""
-"0","data_train"

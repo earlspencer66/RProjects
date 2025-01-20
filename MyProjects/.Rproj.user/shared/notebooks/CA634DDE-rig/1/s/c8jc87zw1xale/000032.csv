@@ -1,3 +1,0 @@
-"0","data1 <- data %>%"
-"0","  mutate(mins = timeSeconds/(1000*60)) %>%"
-"0","  select(CO2Perc, O2Perc, mins)"

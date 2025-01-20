@@ -1,5 +1,0 @@
-"0","#back to data_train"
-"0","data_tr_imputed_encoded <- data_train %>%"
-"0","  mutate(gender_masculine = ifelse(gender== ""masculine"", 1, 0)) %>%"
-"0","  select(-gender) "
-"0","  #select(-ifelse(is.na(mass), mean(mass, na.rm = TRUE), mass)"

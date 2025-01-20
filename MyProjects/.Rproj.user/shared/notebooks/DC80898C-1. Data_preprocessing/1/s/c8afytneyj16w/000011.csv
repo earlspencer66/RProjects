@@ -1,5 +1,0 @@
-"0","#BMI values too small"
-"0","# use funtion normalize"
-"0",""
-"0","data_tr_imputed_encoded %>%"
-"0","  mutate_all(normalize)"

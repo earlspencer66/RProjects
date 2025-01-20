@@ -1,5 +1,0 @@
-"0","saveWidget(p, ""CO2_flowrates.html"", selfcontained = TRUE)
-"
-"2","Error in .getNamespace(pkg) : 
-  invalid type/length (symbol/0) in vector allocation
-"

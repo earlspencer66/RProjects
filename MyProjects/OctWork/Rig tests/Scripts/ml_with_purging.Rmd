@@ -1,0 +1,23 @@
+---
+title: "Test Rig Purging and Evaporative Cooling"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r}
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(readr)
+library(readxl)
+```
+
+```{r}
+#First data to be used to visualize heating
+data <- read_excel("C:/Users/earls/OneDrive/Documents/RProjects/MyProjects/OctWork/Rig tests/Data/Block B1 Cycle 6 Desorption.xlsx", sheet=1)
+```
+
+```{r}
+View(data)
+```

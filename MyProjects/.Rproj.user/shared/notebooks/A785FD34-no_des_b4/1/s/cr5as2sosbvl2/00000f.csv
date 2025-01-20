@@ -1,7 +1,0 @@
-"0","library(htmlwidgets)"
-"0",""
-"0","#saveWidget()"
-"0","saveWidget(p1, ""non_purging_step_interactive.html"", selfcontained = TRUE)"
-"2","Error in .getNamespace(pkg) : 
-  invalid type/length (symbol/0) in vector allocation
-"
