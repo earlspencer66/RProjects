@@ -1,0 +1,64 @@
+---
+title: "Amino acids in 100g of Proteins"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r}
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(readr)
+library(readxl)
+library(plotly)
+```
+
+```{r}
+data <- read_excel("C:/Users/earls/OneDrive/Documents/RProjects/RProjects/MyProjects/Diet and Health/Amino acids/Data/Safe levels of protein intake.xlsx", sheet=3)
+```
+
+```{r}
+View(data)
+```
+
+```{r}
+colnames(data)
+```
+
+```{r}
+animal_prot <- data %>% 
+  slice(1:9) %>%
+  rename(
+    "prot_g" = "prot(g)",
+    "try_mg" = "try(mg)",
+    "thr_mg" = "thr(mg)",
+    "iso_mg" = "iso(mg)",
+    "leu_mg" = "leu(mg)",
+    "lys_mg" = "lys(mg)",
+    "met_mg" = "met(mg)",
+    "phe_mg" = "phe(mg)",
+    "val_mg" = "val(mg)",
+    "arg_mg" = "arg(mg)",
+    "his_mg" = "his(mg)"
+  ) %>%
+  pivot_longer(cols = ends_with("mg"), names_to = "amino_acids", values_to = "amount_mg") %>% 
+  mutate(percentage = prot_g/100)
+```
+
+
+```{r}
+p<- ggplot(animal_prot, aes(amount_mg, food, fill = amino_acids))+
+    geom_bar(stat = "identity", position = "dodge") +  # Horizontal grouped bars
+    labs(
+        title = "Amino Acid Quantity per 100g of Protein (Animal) Food",
+        x = "Amount (mg)",
+        y = "Amino Acid"
+    ) +
+    scale_fill_brewer(palette = "Set3") +  # Optional color palette
+    theme_minimal()
+```
+
+```{r}
+ggplotly(p)
+```
