@@ -1,0 +1,74 @@
+---
+title: "Amino Acids"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r}
+library(readr)
+library(readxl)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+```
+
+```{r}
+data <- read_excel("C:/Users/earls/OneDrive/Documents/RProjects/RProjects/MyProjects/Diet and Health/Amino acids/Data/Safe levels of protein intake.xlsx", sheet=2)
+
+data <- data %>%
+  slice(-9) %>%
+  view()
+```
+
+```{r}
+View(data)
+```
+
+
+```{r}
+data <- data %>% rename(
+  "2-5 years" = "children_2_5_years_mg_kg_day",
+  "10-12 years" = "children_10_12 years_mg_kg_day",
+  "Above 18 years" = "adults_18_years_mg_kg_day",
+  "Above 18 (rev)" = "adults_revised_mg_kg_day"
+)
+```
+
+
+```{r}
+View(data)
+```
+
+```{r}
+colnames(data)
+```
+
+
+
+```{r}
+data1 <- data %>%
+  select(-"Above 18 (rev)") %>%
+  pivot_longer(cols = c("2-5 years", "10-12 years", "Above 18 years"), names_to = "age_group", values_to = "mg_kg_day" )
+```
+
+```{r}
+View(data1)
+```
+
+```{r}
+colnames(data)
+```
+
+
+```{r}
+ggplot(data1, aes(mg_kg_day,amino_acid, fill = age_group))+
+geom_bar(stat = "identity", position = "dodge") +  # Horizontal grouped bars
+  labs(
+    title = "Amino Acid Requirements by Age Group",
+    x = "Amount (mg/kg/day)",
+    y = "Amino Acid"
+  ) +
+  scale_fill_brewer(palette = "Set3") +  # Optional color palette
+  theme_minimal()
+```
