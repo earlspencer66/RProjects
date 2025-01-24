@@ -1,0 +1,71 @@
+---
+title: "Linear Regression: A Real Model"
+output: html notebook
+---
+
+```{r}
+library(ggplot2)
+library(dplyr)
+library(corrr)
+library(rsample)
+library(recipes)
+library(parsnip)
+```
+
+```{r}
+diamonds
+```
+
+```{r}
+skimr::skim(diamonds)
+```
+
+
+```{r}
+diamonds %>%
+  select(where(~!is.factor(.x))) %>%
+  correlate() %>%
+  fashion()
+```
+
+```{r}
+diamonds %>%
+  select(where(~!is.factor(.x))) %>%
+  correlate() %>%
+  network_plot()
+```
+
+```{r}
+high_corr_variables <- diamonds %>%
+  select(where(~!is.factor(.x))) %>%
+  correlate() %>%
+  focus(price) %>%
+  arrange(desc(price)) %>%
+  filter(price >0.5) %>%
+  pull(term)
+
+high_corr_variables
+```
+
+```{r}
+data <- diamonds %>%
+  select(high_corr_variables, price)
+
+data
+```
+
+```{r}
+data_split <- initial_split(data, strata=price)
+data_train <- training(data_split)
+data_test <- testing(data_split)
+```
+
+Build the model
+```{r}
+model <- lm(price ~., data = data_train) #., all other data
+```
+
+```{r}
+summary(model)
+```
+
