@@ -48,8 +48,7 @@ high_corr_variables
 ```
 
 ```{r}
-data <- diamonds %>%
-  select(high_corr_variables, price)
+data <- diamonds
 
 data
 ```
@@ -65,7 +64,111 @@ Build the model
 model <- lm(price ~., data = data_train) #., all other data
 ```
 
+# New Summary
+```{r}
+model<- lm(price ~., data = data_train)
+
+summary(model)
+```
+
+```{r}
+broom::tidy(model) %>%
+  arrange(p.value)
+```
+
+
+# Old Summary
 ```{r}
 summary(model)
+```
+
+```{r}
+broom::tidy(model)
+```
+
+# The Tidymodels approach
+## Split the data
+```{r}
+ata_split <- initial_split(data, strata=price)
+data_train <- training(data_split)
+data_test <- testing(data_split)
+```
+
+## Data Preprocessing
+```{r}
+data_rec <- data_train %>%
+  recipe(price ~ ., data_train) %>%
+  step_dummy(all_nominal()) %>%
+  step_normalize(all_numeric(), -all_outcomes()) %>%
+  prep()
+
+juiced <- juice(data_rec)
+```
+
+## Specify the model
+```{r}
+lm_model <- parsnip::linear_reg() %>%
+  set_engine("lm") %>%
+  set_mode("regression")
+```
+
+## Fit the model
+```{r}
+lm_fit <- fit(lm_model, price ~., juiced)
+
+lm_fit
+```
+## Get infor from the fitted model
+```{r}
+glance(lm_fit)
+```
+
+```{r}
+tidy(lm_fit)
+```
+
+## Evaluate the model
+```{r}
+results_train <- lm_fit %>%
+  predict(new_data = juiced) %>%
+  mutate(truth = data_train$price)
+```
+
+## Evaluate on the test data
+bake () it to get juiced data
+bake(data_rec, data_test)
+```{r}
+results_test <- lm_fit %>% 
+  predict(new_data = bake(data_rec, data_test)) %>%
+  mutate(truth = data_test$price)
+```
+
+```{r}
+results<- results_train %>%
+  mutate(type = "train") %>%
+  bind_rows(
+    results_test %>%
+      mutate(type="test")
+  )
+```
+
+```{r}
+results
+```
+
+
+## Check whether the model has generalized well enough 
+Not overfitted, not underfitted
+```{r}
+results %>%
+  group_by(type) %>%
+  yardstick::rmse(truth, .pred)
+```
+
+```{r}
+ggplot(results, aes(truth, .pred))+
+  geom_point()+
+  geom_abline(color = "red", size=2)+
+  coord_fixed()
 ```
 

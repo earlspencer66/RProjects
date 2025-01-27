@@ -1,6 +1,6 @@
 ---
 title: "Exploratory Data Analysis"
-output: "html notebook"
+output: html notebook
 ---
 
 We'll use a dataset called "diamonds"
@@ -9,6 +9,7 @@ library(ggplot2)
 library(tibble)
 library(dplyr)
 ```
+
 ```{r}
 ?diamonds
 diamonds
