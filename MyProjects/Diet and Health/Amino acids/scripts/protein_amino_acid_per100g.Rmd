@@ -16,6 +16,12 @@ library(plotly)
 
 ```{r}
 data <- read_excel("C:/Users/earls/OneDrive/Documents/RProjects/RProjects/MyProjects/Diet and Health/Amino acids/Data/Safe levels of protein intake.xlsx", sheet=3)
+
+data <- data.frame(data)
+```
+
+```{r}
+class(data)
 ```
 
 ```{r}
@@ -27,25 +33,56 @@ colnames(data)
 ```
 
 ```{r}
+skimr::skim(data)
+```
+
+```{r}
 animal_prot <- data %>% 
   slice(1:9) %>%
+  mutate(category = "Animal") %>%
+  rename(
+    "prot_g" = "prot.g.",
+    "try_mg" = "try.mg.",
+   "thr_mg" = "thr.mg.",
+   "iso_mg" = "iso.mg.",
+   "leu_mg" = "leu.mg.",
+   "lys_mg" = "lys.mg.",
+   "met_mg" = "met.mg.",
+   "phe_mg" = "phe.mg.",
+   "val_mg" = "val.mg.",
+   "arg_mg" = "arg.mg.",
+   "his_mg" = "his.mg."
+  ) %>%
+  #pivot_longer(cols = ends_with("mg."), names_to = "amino_acids", values_to = "amount_mg") #%>% 
+  #mutate(percentage = (prot_g/100)*100)
+```
+
+```{r}
+View(animal_prot)
+```
+
+```{r}
+plant_prot <- data %>% 
+  slice(10:30) %>% 
+  mutate(category = "plant") %>% 
   rename(
     "prot_g" = "prot(g)",
     "try_mg" = "try(mg)",
-    "thr_mg" = "thr(mg)",
-    "iso_mg" = "iso(mg)",
-    "leu_mg" = "leu(mg)",
-    "lys_mg" = "lys(mg)",
-    "met_mg" = "met(mg)",
-    "phe_mg" = "phe(mg)",
-    "val_mg" = "val(mg)",
-    "arg_mg" = "arg(mg)",
-    "his_mg" = "his(mg)"
+   "thr_mg" = "thr(mg)",
+   "iso_mg" = "iso(mg)",
+   "leu_mg" = "leu(mg)",
+   "lys_mg" = "lys(mg)",
+   "met_mg" = "met(mg)",
+   "phe_mg" = "phe(mg)",
+   "val_mg" = "val(mg)",
+   "arg_mg" = "arg(mg)",
+   "his_mg" = "his(mg)"
   ) %>%
-  pivot_longer(cols = ends_with("mg"), names_to = "amino_acids", values_to = "amount_mg") %>% 
-  mutate(percentage = prot_g/100)
 ```
 
+```{r}
+View(plant_prot)
+```
 
 ```{r}
 p<- ggplot(animal_prot, aes(amount_mg, food, fill = amino_acids))+
