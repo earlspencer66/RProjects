@@ -97,6 +97,12 @@ View(data_combined)
 colnames(data_combined)
 ```
 
+
+```{r}
+custom_colors <- c("#FF5733", "#33FF57", "#3357FF", "#FFFF33", "#FF33FF")
+barplot(1:2, col = custom_colors)
+
+```
 ```{r}
 p<- ggplot(data_combined, aes(prot_g, food, fill = category))+
     geom_bar(stat = "identity", position = "dodge") +  # Horizontal grouped bars
@@ -118,5 +124,7 @@ ggplotly(p)
 ```
 
 ```{r}
+library(RColorBrewer)
 display.brewer.all()
+
 ```
