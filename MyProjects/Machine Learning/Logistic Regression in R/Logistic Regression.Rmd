@@ -1,0 +1,107 @@
+---
+title: "Logistic Regression: A Real Model"
+output: html notebook
+---
+
+```{r}
+#can just load libray(tidyverse) or library(tidymodels)
+library(ggplot2)
+library(tidyr)
+library(corrr)
+library(rsample)
+library(recipes)
+library(parsnip)
+library(yardstick)
+```
+
+```{r}
+data <- titanic_train
+data_split <- initial_split(data)
+train <- training(data_split)
+test <- testing(data_split)
+
+skimr::skim(train)
+```
+```{r}
+colnames(train)
+```
+
+
+
+```{r}
+data_rec <- recipe(Survived  ~., train) %>%
+  step_mutate(Survived = ifelse(Survived ==0, "Died", "Survived")) %>%
+  step_string2factor(Survived) %>%
+  step_rm(PassengerId, Name, Ticket, Cabin) %>%
+  step_impute_mean(Age) %>%
+  step_dummy(all_nominal(), -all_outcomes()) %>%
+  step_zv(all_predictors()) %>%
+  step_center(all_predictors(), -all_nominal()) %>%
+  step_scale(all_predictors(), -all_nominal())
+```
+
+```{r}
+data_prep <- data_rec %>%
+  prep()
+```
+
+```{r}
+# You can juice(data_prep) or bake(data_prep, train)
+waldo::compare(juice(data_prep), bake(data_prep, train))
+```
+
+```{r}
+fitted_model <- logistic_reg() %>%
+  set_engine("glm") %>%
+  set_mode("classification") %>%
+  fit(Survived ~., data = bake(data_prep, train))
+```
+
+```{r}
+predictions <- fitted_model %>% 
+  predict(new_data = bake(data_prep, test)) %>%
+  bind_cols(
+    bake(data_prep, test) %>%
+      select(Survived)
+  )
+```
+
+# Create Confusion Matrix
+```{r}
+# conf_mat
+predictions %>% 
+  conf_mat(Survived, .pred_class)
+```
+
+# Generate metrics
+```{r}
+ predictions %>% 
+  metrics(Survived, .pred_class) %>%
+  select(-.estimator) %>%
+  filter(.metric=="accuracy")
+```
+
+```{r}
+predictions %>%
+  precision(Survived, .pred_class) %>%
+  select(-.estimator)
+```
+
+```{r}
+predictions %>%
+  recall(Survived, .pred_class) %>%
+  select(-.estimator)
+```
+
+```{r}
+predictions %>%
+  f_meas(Survived, .pred_class)
+```
+
+
+# Generate curves
+```{r}
+# Course ended without generating a ROC curve
+roc_auc()
+```
+
