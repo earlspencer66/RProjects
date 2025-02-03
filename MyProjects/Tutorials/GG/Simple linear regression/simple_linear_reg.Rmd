@@ -1,3 +1,53 @@
 ## Simple linear regression
 
 Source: https://www.geeksforgeeks.org/simple-linear-regression-using-r/
+
+### Assumptions of Linear Regression:
+1. Linear Relationship between the features and the target
+2. Small or no multicollinearity between the features
+3. Homoscedcity
+4. Normal distribution of error terms
+5. No autocorrelations 
+
+```{r}
+#dataframe
+data <- data.frame(
+    Years_exp = c(1.1,1.3,1.5,2.0,2.2,2.9,3.0,3.2,3.2,3.7),
+    Salary = c(39343,46205,37731,43525,39891,56642,60150,54445,64445,57189)
+)
+```
+
+```{r}
+View(data)
+```
+
+```{r}
+colnames(data)
+```
+
+```{r}
+plot(data$Years_exp, data$Salary,
+    xlab = "Years of Experience",
+    ylab = "Salary",
+    main = "Scatter plot of salary against years of experience")
+```
+
+Find the regression line
+
+Least Square technique
+
+lm(Y ~ model)
+
+```{r}
+library(caTools)
+split = sample.split(data$Salary, SplitRatio = 0.7)
+trainingset = subset(data, split==TRUE)
+testset = subset(data, split==FALSE)
+
+# fitting simple linear regression to the training set
+lm.r = lm(formula = Salary ~ Years_exp,
+        data=trainingset)
+
+# summary of the model
+summary(lm.r)
+```
