@@ -10,6 +10,10 @@ Source: https://www.geeksforgeeks.org/simple-linear-regression-using-r/
 5. No autocorrelations 
 
 ```{r}
+library(ggplot2)
+```
+
+```{r}
 #dataframe
 data <- data.frame(
     Years_exp = c(1.1,1.3,1.5,2.0,2.2,2.9,3.0,3.2,3.2,3.7),
@@ -50,4 +54,38 @@ lm.r = lm(formula = Salary ~ Years_exp,
 
 # summary of the model
 summary(lm.r)
+```
+
+### Predict values using the predict function
+```{r}
+# create a data frame with new input values
+new_data <- data.frame(Years_exp = c(4.0,4.5,5.0))
+
+# predict using the linear regression model
+predicted_salaries <- predict(lm.r, newdata=new_data)
+
+predicted_salaries
+```
+
+## Visualising the training dataset
+```{r}
+ggplot()+geom_point(aes(x=trainingset$Years_exp,
+                    y = trainingset$Salary), color = "red")+
+        geom_line(aes(trainingset$Years_exp,
+        y= predict(lm.r, newdata=trainingset)), color= "blue")+
+        ggtitle("Salary vs Experience (Training Set)")+
+        xlab("Years of Experience")+
+        ylab("Salary")
+```
+
+## Visualising the testing dataset
+```{r}
+ggplot()+
+  geom_point(aes(x=testset$Years_exp, y = testset$Salary), color='red')+
+  geom_line(aes(x=trainingset$Years_exp,
+                y =predict(lm.r, newdata= trainingset)),
+                color = 'blue')+
+ggtitle("Salary vs Experience (Test set)")+
+xlab("Years of Experience")+
+ylab("Salary")
 ```

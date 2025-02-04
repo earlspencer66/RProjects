@@ -1,0 +1,32 @@
+# Predicing Miles Per Gallon (mpg) Based on HorsePower (hp)
+## Using the mtcars dataset
+
+```{r}
+library(dplyr)
+library(ggplot2)
+```
+
+```{r}
+View(mtcars)
+```
+
+```{r}
+data <- mtcars %>% 
+        select(mpg, hp)
+View(data)
+head(data)
+```
+
+## simple linear regression
+```{r}
+model <- lm(mpg~hp, data=data)
+summary(model)
+```
+
+```{r}
+ggplot(data, aes(hp,mpg))+
+geom_point()+
+#geom_abline(model) #regression line
+theme_minimal()+
+ggtitle("MPG against HP")
+```
