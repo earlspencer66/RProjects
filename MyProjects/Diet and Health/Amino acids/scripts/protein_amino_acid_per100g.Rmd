@@ -111,7 +111,11 @@ p<- ggplot(data_combined, aes(prot_g, food, fill = category))+
         x = "Amount (mg)",
         y = "Food"
     ) +
-    scale_fill_brewer(palette = "Set3") +  # Optional color palette
+     theme(
+    axis.title.x = element_text(face = "bold"),
+    axis.title.y = element_text(face = "bold")
+  )+
+    scale_fill_brewer(palette = "Dark2") +  # Optional color palette
     theme_minimal()
 ```
 
@@ -120,11 +124,88 @@ p
 ```
 
 ```{r}
-ggplotly(p)
+ggsave("animal and plant protein.jpeg", p)
+```
+
+```{r}
+p1 <- ggplotly(p)
+p1
+```
+
+```{r}
+library(htmlwidgets)
+saveWidget(p1, "animal_plant_protein.html", selfcontained = TRUE)
 ```
 
 ```{r}
 library(RColorBrewer)
 display.brewer.all()
 
+```
+
+Check amino acids per food
+```{r}
+p2 <- ggplot(animal_prot, aes(amount_mg,food, fill = amino_acids))+
+    geom_bar(stat = "identity", position = "dodge") +  # Horizontal grouped bars
+    labs(
+        title = "Amino Acids per Food Category",
+        x = "Amount (mg/100g Protein)",
+        y = "Amino Acid"
+    ) +
+    scale_fill_brewer(palette = "Set3") +  # Optional color palette
+    theme_minimal()
+```
+
+```{r}
+ggplotly(p2)
+```
+
+```{r}
+p3 <- ggplot(plant_prot[1:80,], aes(amount_mg,food, fill = amino_acids))+
+    geom_bar(stat = "identity", position = "dodge") +  # Horizontal grouped bars
+    labs(
+        title = "Amino Acids per Food Category",
+        x = "Amount (mg/100g Protein)",
+        y = "Amino Acid"
+    ) +
+    scale_fill_brewer(palette = "Set3") +  # Optional color palette
+    theme_minimal()
+```
+
+```{r}
+ggplotly(p3)
+```
+
+Second batch of the plant_prot data
+```{r}
+p3 <- ggplot(plant_prot[81:160,], aes(amount_mg,food, fill = amino_acids))+
+    geom_bar(stat = "identity", position = "dodge") +  # Horizontal grouped bars
+    labs(
+        title = "Amino Acids per Food Category",
+        x = "Amount (mg/100g Protein)",
+        y = "Amino Acid"
+    ) +
+    scale_fill_brewer(palette = "Set3") +  # Optional color palette
+    theme_minimal()
+```
+
+```{r}
+ggplotly(p3)
+```
+
+Third batch of the plant_prot data
+```{r}
+p4 <- ggplot(plant_prot[161:210,], aes(amount_mg,food, fill = amino_acids))+
+    geom_bar(stat = "identity", position = "dodge") +  # Horizontal grouped bars
+    labs(
+        title = "Amino Acids per Food Category",
+        x = "Amount (mg/100g Protein)",
+        y = "Amino Acid"
+    ) +
+    scale_fill_brewer(palette = "Set3") +  # Optional color palette
+    theme_minimal()
+```
+
+```{r}
+ggplotly(p4)
 ```

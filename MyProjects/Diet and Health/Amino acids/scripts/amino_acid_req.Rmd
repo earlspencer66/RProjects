@@ -68,7 +68,7 @@ p<- ggplot(data1, aes(mg_kg_day,amino_acid, fill = age_group))+
         x = "Amount (mg/kg/day)",
         y = "Amino Acid"
     ) +
-    scale_fill_brewer(palette = "Set3") +  # Optional color palette
+    scale_fill_brewer(palette = "Set2") +  # Optional color palette
     theme_minimal()
 ```
 
@@ -77,5 +77,17 @@ class(p)
 ```
 
 ```{r}
-ggplotly(p)
+p1 <- ggplotly(p)
+p1
+```
+
+```{r}
+# interactive graph
+library(htmlwidgets)
+saveWidget(p1, "plot.html", selfcontained = TRUE)
+```
+
+```{r}
+#static graph
+ggsave("plot.jpeg", p)
 ```
