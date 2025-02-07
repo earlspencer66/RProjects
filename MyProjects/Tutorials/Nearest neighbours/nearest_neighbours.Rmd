@@ -1,0 +1,85 @@
+---
+title: "Nearest Neighbours: k-Nearest Neighbours in R (Geeks for Geeks)"
+output: html notebook
+---
+
+Source: https://www.geeksforgeeks.org/knn-k-nearest-neighbour-algorithm-in-r-from-scratch/
+
+lazy learning algorithm
+
+Procedure:
+1. Take dataset
+2. Select the value of k
+3. Calcuate the euclidean distance
+4. Identify the k nearest learning points
+5. 
+
+```{r}
+library(readr)
+library(dplyr)
+library(readxl)
+```
+
+```{r}
+dataframe <- read_excel("C:/Users/earls/OneDrive/Documents/RProjects/RProjects/MyProjects/Tutorials/Nearest neighbours/example.xlsx")
+View(dataframe)
+```
+
+```{r}
+# divide into training and test data
+trainData <- dataframe[1:(nrow(dataframe) - 1), ]
+#View(trainData)
+
+testData = dataframe[nrow(dataframe),]
+#View(testData)
+```
+
+```{r}
+# selecting the value of k and ccalculating the euclidean distance
+# k value is usuall the sqrt of the number of observations
+# for euclidean distance calculation, x1, y1 from training data and x2, y2, from test data
+ k <- 3
+ euclideanDistance <- function(x, y) {
+     #checking whether x and y have same number of observation
+  if(length(x)==length(y))
+     {
+       sqrt(sum((x-y)^2))
+     }
+  else
+    {
+       stop('X and Y shouls have same variable numbers')
+    }
+ }
+euclideanDistance(9:15,16:22)
+```
+
+
+===============
+Using the iris dataset
+===============
+
+```{r}
+library(class)
+library(caret)
+library(ggplot2)
+library(GGally)
+```
+
+```{r}
+iris
+```
+
+```{r}
+summary(iris)
+```
+
+Normalize/standardize to make the data variables have the same level
+```{r}
+normal_frame<-function(a)(
+  return  (((a-min(a))/(max(a)-min(a))))
+)
+iris_new_frame<-as.data.frame(lapply(iris[,-5],normal_frame))
+summary(iris_new_frame)
+
+```
+
