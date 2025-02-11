@@ -15,71 +15,78 @@ Procedure:
 5. 
 
 ```{r}
-library(readr)
-library(dplyr)
-library(readxl)
-```
-
-```{r}
-dataframe <- read_excel("C:/Users/earls/OneDrive/Documents/RProjects/RProjects/MyProjects/Tutorials/Nearest neighbours/example.xlsx")
-View(dataframe)
-```
-
-```{r}
-# divide into training and test data
-trainData <- dataframe[1:(nrow(dataframe) - 1), ]
-#View(trainData)
-
-testData = dataframe[nrow(dataframe),]
-#View(testData)
-```
-
-```{r}
-# selecting the value of k and ccalculating the euclidean distance
-# k value is usuall the sqrt of the number of observations
-# for euclidean distance calculation, x1, y1 from training data and x2, y2, from test data
- k <- 3
- euclideanDistance <- function(x, y) {
-     #checking whether x and y have same number of observation
-  if(length(x)==length(y))
-     {
-       sqrt(sum((x-y)^2))
-     }
-  else
-    {
-       stop('X and Y shouls have same variable numbers')
-    }
- }
-euclideanDistance(9:15,16:22)
-```
-
-
-===============
-Using the iris dataset
-===============
-
-```{r}
 library(class)
+library(rsample)
 library(caret)
-library(ggplot2)
-library(GGally)
 ```
 
 ```{r}
-iris
+data(iris)
+
+data <- iris
 ```
 
 ```{r}
-summary(iris)
+set.seed(123) # for reproducibility
+
+#stratified splitting (for balanced classes)
+data_split <- initial_split(data, prop=0.75, strata=Species)
+data_train <- training(data_split)
+data_test <- testing(data_split)
+
+#extract labels (important to do AFTER splitting)
+train_labels <- data_train$Species
+test_labels <- data_test$Species
 ```
 
-Normalize/standardize to make the data variables have the same level
 ```{r}
-normal_frame<-function(a)(
-  return  (((a-min(a))/(max(a)-min(a))))
-)
-iris_new_frame<-as.data.frame(lapply(iris[,-5],normal_frame))
-summary(iris_new_frame)
+#k-NN implementation
+
+#skimr::skim(data)
+# take k = sqrt of observations
+# take an odd number to avoid ties
+# consider k of 3
+k <- 3
+
+# k_NN classification
+predictions <- knn(train=data_train[,1:4], test = data_test[,1:4], cl = train_labels, k=k)
 
 ```
 
+```{r}
+# Evaluation
+# Confusion matrix
+confusion_matrix <- table(predictions, test_labels)
+print(confusion_matrix)
+```
+
+```{r}
+# accuracy
+accuracy <- mean(predictions == test_labels)
+print(paste("Accuracy:", accuracy))
+```
+
+```{r}
+# calculate sensitivity, specificiry
+confusionMatrix(predictions, test_labels)
+```
+
+```{r}
+#choosing the best k (tuning)
+k_values <-1:20
+accuracy_scores <- numeric(length(k_values))
+
+for (i in 1:length(k_values)){
+   k <- k_values[i]
+   predictions1 <- knn(data_train[,1:4], data_test[,1:4], train_labels, k=k)
+   accuracy_scores[i] <- mean(predictions1 == test_labels)
+}
+
+# plot the accuracy scores
+plot(k_values, accuracy_scores, type="l", xlab="k", ylab= "Accuracy", main="accuracy vs k")
+
+# find the best k
+best_k <- k_values[which.max(accuracy_scores)]
+print(paste("Best k:", best_k))
+print(paste("Best Accuracy:", max(accuracy_scores)))
+```
